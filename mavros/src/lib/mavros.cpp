@@ -140,6 +140,7 @@ MavRos::MavRos() :
 
 	// XXX TODO: move workers to ROS Spinner, let mavconn threads to do only IO
 	fcu_link->message_received_cb = [this](const mavlink_message_t *msg, const Framing framing) {
+	    ROS_INFO_STREAM("mavlink message received");
 		mavlink_pub_cb(msg, framing);
 		plugin_route_cb(msg, framing);
 
